@@ -1,10 +1,15 @@
 <template>
   <div id="Index">
-    <h1>PokeVue</h1>
+    <img src="../assets/pokee.png" alt="" />
     <el-container>
       <el-row :offset="6" :span="15" :gutter="20">
         <el-col :span="18" :offset="3">
-          <el-col :span="6" v-for="(item, index) in data" v-bind:key="index">
+          <el-col
+            :span="6"
+            v-for="(item, index) in data"
+            v-bind:key="index"
+            class="newCard"
+          >
             <PokeItem :dato="item" :index="index" />
           </el-col>
         </el-col>
@@ -37,4 +42,7 @@ export default {
 </script>
 
 <style>
+.newCard {
+  margin-bottom: 20px;
+}
 </style>

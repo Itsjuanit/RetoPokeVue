@@ -7,18 +7,37 @@
         :style="{ backgroundColor: cambiarColor(datosPoke.types[0].type.name) }"
       />
       <div style="padding: 14px">
-        <span>{{ dato.name }}</span>
+        <h2>{{ dato.name | capitalize }}</h2>
+        <h3 :style="{ color: cambiarColor(datosPoke.types[0].type.name) }">
+          {{ datosPoke.type | capitalize }}
+        </h3>
+        <h4>{{ datosPoke.weight + " lbs" }}</h4>
         <div class="bottom clearfix">
           <el-button type="text" @click="dialogVisible = true"
-            ><i class="el-icon-view el-icon--right"></i
+            ><i class="el-icon-view"></i
           ></el-button>
 
           <el-dialog
             title="Informacion básica"
             :visible.sync="dialogVisible"
-            width="30%"
+            width="50%"
           >
+            <h2>{{ dato.name | capitalize }}</h2>
+            <h3 :style="{ color: cambiarColor(datosPoke.types[0].type.name) }">
+              {{ datosPoke.type | capitalize }}
+            </h3>
             <span>Atributos del Pokemon</span>
+            <ul>
+              <li v-for="(move, index) in moves" :key="index">
+                {{ move.moves.name }}
+              </li>
+            </ul>
+            <p>
+              {{
+                "La altura de este Pokemon es de " + datosPoke.height + " cm"
+              }}
+            </p>
+
             <span slot="footer" class="dialog-footer">
               <el-button type="danger" @click="dialogVisible = false"
                 >Cerrar</el-button
@@ -33,16 +52,22 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "PokeItem",
   props: {
     dato: Object,
     index: Number,
   },
-  el: "#example-1",
+
   data() {
     return {
-      datosPoke: null,
+      datosPoke: {
+        type: "",
+        weight: Number,
+        height: Number,
+        moves: "",
+      },
       dialogVisible: false,
     };
   },
@@ -57,6 +82,12 @@ export default {
           return "#3474eb";
         case "bug":
           return "#b2bd55";
+        case "poison":
+          return "#a502b8";
+        case "ground":
+          return "#4d4d4d";
+        case "electric":
+          return "#f2ff00";
         case "normal":
           return "#1d232e";
       }
@@ -65,7 +96,19 @@ export default {
   mounted() {
     axios.get(this.dato.url).then((response) => {
       this.datosPoke = response.data;
+      this.datosPoke.type = response.data.types[0].type.name;
+      this.datosPoke.weight = response.data.weight;
+      this.datosPoke.height = response.data.height;
+      this.datosPoke.moves = response.data.moves[0].move.name;
+      console.log(response);
     });
+  },
+  filters: {
+    capitalize(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
   },
 };
 </script>
