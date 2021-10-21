@@ -23,21 +23,25 @@
             width="50%"
           >
             <h2>{{ dato.name | capitalize }}</h2>
-            <h3 :style="{ color: cambiarColor(datosPoke.types[0].type.name) }">
+            <span
+              :style="{ color: cambiarColor(datosPoke.types[0].type.name) }"
+            >
               {{ datosPoke.type | capitalize }}
-            </h3>
-            <h2>Atributos del Pokemon</h2>
-            <ul>
-              <li v-for="(move, index) in moves" :key="index">
-                {{ move.moves.name }}
-              </li>
-            </ul>
+            </span>
             <p>
               {{
                 "La altura de este Pokemon es de " + datosPoke.height + " cm"
               }}
             </p>
-
+            <p>
+              {{ "Este Pokemon tiene " + datosPoke.moves.length + " ataques" }}
+            </p>
+            <p>
+              {{ "El ID de este Pokemon en la Pokedex es el " + datosPoke.id }}
+            </p>
+            <p>
+              {{ "El XP de este Pokemon es " + datosPoke.base_experience }}
+            </p>
             <span slot="footer" class="dialog-footer">
               <el-button type="danger" @click="dialogVisible = false"
                 >Cerrar</el-button
@@ -63,10 +67,11 @@ export default {
   data() {
     return {
       datosPoke: {
-        type: "",
+        type: [],
         weight: Number,
         height: Number,
-        moves: "",
+        id: Number,
+        base_experience: Number,
       },
       dialogVisible: false,
     };
@@ -99,7 +104,8 @@ export default {
       this.datosPoke.type = response.data.types[0].type.name;
       this.datosPoke.weight = response.data.weight;
       this.datosPoke.height = response.data.height;
-      this.datosPoke.moves = response.data.moves[0].move.name;
+      this.datosPoke.id = response.data.id;
+      this.datosPoke.base_experience = response.data.base_experience;
       console.log(response);
     });
   },
@@ -142,5 +148,13 @@ export default {
 
 .clearfix:after {
   clear: both;
+}
+.circle {
+  display: flex;
+  justify-content: center;
+  max-width: 50px;
+  border-radius: 10px;
+  padding: 3px;
+  border: 1px solid #212121;
 }
 </style>
