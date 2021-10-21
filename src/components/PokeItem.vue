@@ -93,6 +93,8 @@ export default {
           return "#4d4d4d";
         case "electric":
           return "#f2ff00";
+        case "fairy":
+          return "#9c9100";
         case "normal":
           return "#1d232e";
       }
