@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <div id="nav"><router-link to="/">Home</router-link></div>
+    <div id="nav"><router-link to="/">🏡</router-link></div>
   </div>
 </template>
 

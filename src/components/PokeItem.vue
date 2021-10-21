@@ -20,7 +20,7 @@
           <el-dialog
             title="Informacion básica"
             :visible.sync="dialogVisible"
-            width="50%"
+            width="30%"
           >
             <h2>{{ dato.name | capitalize }}</h2>
             <span
@@ -28,20 +28,10 @@
             >
               {{ datosPoke.type | capitalize }}
             </span>
-            <p>
-              {{
-                "La altura de este Pokemon es de " + datosPoke.height + " cm"
-              }}
-            </p>
-            <p>
-              {{ "Este Pokemon tiene " + datosPoke.moves.length + " ataques" }}
-            </p>
-            <p>
-              {{ "El ID de este Pokemon en la Pokedex es el " + datosPoke.id }}
-            </p>
-            <p>
-              {{ "El XP de este Pokemon es " + datosPoke.base_experience }}
-            </p>
+            <p>"La altura de este Pokemon es de {{ datosPoke.height }} cm</p>
+            <p>Este Pokemon tiene {{ datosPoke.moves.length }} ataques</p>
+            <p>El ID de este Pokemon en la Pokedex es el {{ datosPoke.id }}</p>
+            <p>El XP de este Pokemon es {{ datosPoke.base_experience }}</p>
             <span slot="footer" class="dialog-footer">
               <el-button type="danger" @click="dialogVisible = false"
                 >Cerrar</el-button
@@ -108,7 +98,7 @@ export default {
       this.datosPoke.height = response.data.height;
       this.datosPoke.id = response.data.id;
       this.datosPoke.base_experience = response.data.base_experience;
-      console.log(response);
+      //console.log(response);
     });
   },
   filters: {
@@ -121,7 +111,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .time {
   font-size: 13px;
   color: #999;
