@@ -26,7 +26,7 @@
             <h3 :style="{ color: cambiarColor(datosPoke.types[0].type.name) }">
               {{ datosPoke.type | capitalize }}
             </h3>
-            <span>Atributos del Pokemon</span>
+            <h2>Atributos del Pokemon</h2>
             <ul>
               <li v-for="(move, index) in moves" :key="index">
                 {{ move.moves.name }}
