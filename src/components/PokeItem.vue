@@ -28,7 +28,7 @@
             >
               {{ datosPoke.type | capitalize }}
             </span>
-            <p>"La altura de este Pokemon es de {{ datosPoke.height }} cm</p>
+            <p>La altura de este Pokemon es de {{ datosPoke.height }} cm</p>
             <p>Este Pokemon tiene {{ datosPoke.moves.length }} ataques</p>
             <p>El ID de este Pokemon en la Pokedex es el {{ datosPoke.id }}</p>
             <p>El XP de este Pokemon es {{ datosPoke.base_experience }}</p>
