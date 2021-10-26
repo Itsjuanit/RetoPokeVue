@@ -87,6 +87,8 @@ export default {
           return "#9c9100";
         case "normal":
           return "#1d232e";
+        case "fighting":
+          return "#f06e1d";
       }
     },
   },
